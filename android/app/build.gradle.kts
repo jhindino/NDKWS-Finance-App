@@ -6,15 +6,34 @@ plugins {
 }
 
 android {
-    namespace = "com.example.financial_tracker_app"
-    compileSdk = flutter.compileSdkVersion
-    ndkVersion = flutter.ndkVersion
+    namespace = "com.example.financial_tracker_app" // Your existing namespace
+    compileSdk = flutter.compileSdkVersion      // Your existing compileSdk
+    ndkVersion = "27.0.12077973"              // MODIFIED - Set specific NDK version
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
 
+    // The rest of your android block (defaultConfig, buildTypes, etc.) would continue below
+    // For example:
+    defaultConfig {
+        applicationId = "com.example.financial_tracker_app" // Ensure this matches your app's ID
+        minSdk = flutter.minSdkVersion
+        targetSdk = flutter.targetSdkVersion
+        versionCode = flutterVersionCode.toInt()
+        versionName = flutterVersionName
+    }
+
+    buildTypes {
+        release {
+            // TODO: Add your own signing config for the release build.
+            // Signing with the debug keys for now, so `flutter run --release` works.
+            signingConfig = signingConfigs.getByName("debug")
+        }
+    }
+    // etc.
+}
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_11.toString()
     }
